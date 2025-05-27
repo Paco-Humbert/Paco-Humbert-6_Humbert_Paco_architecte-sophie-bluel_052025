@@ -29,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	margin: 0 auto;
 	line-height: 1;
 }
 ol, ul {
@@ -55,8 +56,12 @@ body {
 }
 header {
 	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
+  	flex-direction: column;
+  	justify-content: space-between;
+  	margin-bottom: 50px;
+  	margin-left: auto;
+  	margin-right: auto;
+  	width: auto;
 }
 section {
 	margin: 50px 0
@@ -75,7 +80,6 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
 }
 
 h2{
@@ -88,10 +92,10 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
-
 }
-nav li {
-	padding: 0 10px;
+
+nav li  {
+	padding: 0 30px;
 	font-size: 1.2em;
 }
 
@@ -107,8 +111,8 @@ li:hover {
 }
 #introduction img {
 	display: block;
-	margin: auto;
-	width: 80%;
+	
+	width: 90%;
 }
 
 #introduction article {
@@ -123,7 +127,7 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+	margin-top: 40px;
 }
 .gallery {
 	width: 100%;
@@ -139,7 +143,7 @@ li:hover {
 }
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #contact > * {
 	text-align: center;
@@ -185,4 +189,122 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
+#header-edition {
+	width: 1440px;
+	display: flex;
+  	justify-content: center;
+  	padding: 20px 0;
+  	margin-top: 0;
+  	background-color: black;
+  	color: white;
+}
+
+.edition {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  
+}
+
+#header-link {
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  padding: 0 150px;
+  width: 1140px;
+}
+
+main {
+  width: 950px;
+  margin: auto;
+  padding: 0 245px;
+  margin-top: 181px;
+}
+
+section {
+  margin: 50px 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+#instagram img {
+  height: 22px;
+  cursor: pointer;
+}
+
+.filters{
+	display: flex;
+	justify-content: center;
+	margin: 40px 0;
+}
+.filter-btn {  
+	font-family: 'Syne';
+	padding: 10px 20px;
+	margin: 0 5px;
+	border: 1px solid #1D6154;
+	border-radius: 25px;
+	color: #1D6154;
+	background-color: white;
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.5s ease;
+}
+
+.portfolio-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 31px;
+  
+}
+
+#portfolio-modification {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+
+#header-login {
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  padding: 0 150px;
+  width: 1140px;
+}
+
+#contact {
+	width: 50%;
+    margin: auto;
+}
+
+#contact-login {
+	width: 50%;
+    margin: auto;
+}
+
+.login {
+	font-weight: bold;
+}
+
+.body-login {
+	max-width: 1440px;
+	height: 1024px;
+}
+
+
 
