@@ -52,3 +52,13 @@ async function getCategories() {
     console.error("Error loading categories.", error);
   }
 }
+
+// Fonction pour afficher les catégories
+async function displayCategories() {
+  const categories = await getCategories();
+  // unshift ajoute un filtre "Tous" avant les autres catégories dans l'interface, pour que l'utilisateur puisse voir tous les travaux sans filtrage.
+  categories.unshift({ id: 0, name: "Tous" });
+  const filtersContainer = document.querySelector("#filters");
+// Vide les filtres pour éviter les doublons  
+  filtersContainer.innerHTML = ""; 
+}
