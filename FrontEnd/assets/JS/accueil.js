@@ -61,4 +61,11 @@ async function displayCategories() {
   const filtersContainer = document.querySelector("#filters");
 // Vide les filtres pour éviter les doublons  
   filtersContainer.innerHTML = ""; 
+
+  categories.forEach((cat) => {
+    const filterElement = document.createElement("div");
+    filterElement.classList
+    filterElement.innerText
+    filterElement.addEventListener("click", () => {
+      )
 }
