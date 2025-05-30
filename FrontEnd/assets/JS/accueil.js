@@ -64,8 +64,15 @@ async function displayCategories() {
 
   categories.forEach((cat) => {
     const filterElement = document.createElement("div");
-    filterElement.classList
-    filterElement.innerText
+    filterElement.classList.add("")
+    filterElement.innerText = cat.name
     filterElement.addEventListener("click", () => {
-      )
+      document
+        .querySelectorAll("")
+        .forEach((item) => item.classList.remove("selected")
+      filterElement.classList.add("selected");
+      filterWorks(cat.id);
+    });
+      filtersContainer.appendChild(filterElement);
+  });
 }
