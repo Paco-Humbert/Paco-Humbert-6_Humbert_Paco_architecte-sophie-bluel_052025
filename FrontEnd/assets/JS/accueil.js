@@ -64,14 +64,14 @@ async function displayCategories() {
 
   categories.forEach((cat) => {
     const filterElement = document.createElement("div");
-    filterElement.classList.add("");
+    filterElement.classList.add(".filter-btn");
     filterElement.innerText = cat.name;
     filterElement.addEventListener("click", () => {
       document
         .querySelectorAll("filter-btn")
         .forEach((item) => item.classList.remove("selected");
 // Ajoute une classe à l'élément cliqué
-      filterElement.classList.add("selected"));
+      filterElement.classList.add("selected");
 // Filtre les travaux en fonction de la catégorie sélectionnée
       filterWorks(cat.id);
     });
@@ -81,4 +81,20 @@ async function displayCategories() {
 // Sélectionne par défaut le premier élément 'Tous'
   filtersContainer.firstChild.classList.add("selected");
 }
+
+// Fonction pour filtrer les travaux par catégorie.
+async function filterWorks(categoryId) {
+  const works = await getWorks();
+// Si l'ID de la catégorie = 0, affiche tous les travaux.
+  if (categoryId === 0) {
+    displayFilteredWorks(works);
+    return;
+  }
+// Filtre les travaux selon la catégorie sélectionnée.
+  const filteredWorks = works.filter(
+    (travail) => travail.category.id === categoryId
+  );
+  displayFilteredWorks(filteredWorks);
+}
+
 
