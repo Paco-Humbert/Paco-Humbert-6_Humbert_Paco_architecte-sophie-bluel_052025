@@ -80,6 +80,17 @@ async function displayCategories() {
   }
 }
 
+// Filtrage des travaux selon l’ID de catégorie
+function filterWorks(categoryId) {
+  if (categoryId === 0) {
+    displayFilteredWorks(allWorks);
+    return;
+  }
+
+  const filteredWorks = allWorks.filter(work => work.category.id === categoryId);
+  displayFilteredWorks(filteredWorks);
+}
+
 
 // Crée et ajoute chaque élément de travail à la galerie
   for (let travail of filteredWorks) {
@@ -92,7 +103,16 @@ async function displayCategories() {
     figureElement.appendChild(figcaptionElement);
     galleryElement.appendChild(figureElement);
   }
-}
+
+//Affichage travaux filtré
+function displayFilteredWorks(filteredWorks = []) {
+  gallery.innerHTML = "";
+
+  if (filteredWorks.length === 0) {
+    gallery.innerHTML = "<p>Aucun projet trouvé.</p>";
+    return;
+  }
 
 // Lance la récupération dès le chargement de la page
 getWorks();  
+displayCategories();
