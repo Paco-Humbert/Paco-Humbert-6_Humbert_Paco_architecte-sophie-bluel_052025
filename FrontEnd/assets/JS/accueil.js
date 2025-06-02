@@ -56,7 +56,7 @@ async function getCategories() {
 // Fonction pour afficher les catégories
 async function displayCategories() {
   const categories = await getCategories();
-  // unshift ajoute un filtre "Tous" avant les autres catégories dans l'interface, pour que l'utilisateur puisse voir tous les travaux sans filtrage.
+// unshift ajoute un filtre "Tous" avant les autres catégories dans l'interface, pour que l'utilisateur puisse voir tous les travaux sans filtrage.
   categories.unshift({ id: 0, name: "Tous" });
   const filtersContainer = document.querySelector("#filters");
 // Vide les filtres pour éviter les doublons  
@@ -64,15 +64,21 @@ async function displayCategories() {
 
   categories.forEach((cat) => {
     const filterElement = document.createElement("div");
-    filterElement.classList.add("")
-    filterElement.innerText = cat.name
+    filterElement.classList.add("");
+    filterElement.innerText = cat.name;
     filterElement.addEventListener("click", () => {
       document
-        .querySelectorAll("")
-        .forEach((item) => item.classList.remove("selected")
-      filterElement.classList.add("selected");
+        .querySelectorAll("filter-btn")
+        .forEach((item) => item.classList.remove("selected");
+// Ajoute une classe à l'élément cliqué
+      filterElement.classList.add("selected"));
+// Filtre les travaux en fonction de la catégorie sélectionnée
       filterWorks(cat.id);
     });
       filtersContainer.appendChild(filterElement);
   });
+
+// Sélectionne par défaut le premier élément 'Tous'
+  filtersContainer.firstChild.classList.add("selected");
 }
+

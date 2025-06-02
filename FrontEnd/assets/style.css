@@ -257,7 +257,11 @@ a {
 	cursor: pointer;
 	transition: all 0.5s ease;
 }
-
+.filter-btn.selected :hover {
+	color: #fff;
+	background-color: #1D6154;
+	cursor: pointer;
+}
 .portfolio-title {
   display: flex;
   flex-direction: row;
