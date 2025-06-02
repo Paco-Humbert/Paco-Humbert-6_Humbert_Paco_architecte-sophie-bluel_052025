@@ -257,7 +257,7 @@ a {
 	cursor: pointer;
 	transition: all 0.5s ease;
 }
-.filter-btn.selected {
+.filter-btn:hover, :focus, :active {
 	color: #fff;
 	background-color: #1D6154;
 	cursor: pointer;
