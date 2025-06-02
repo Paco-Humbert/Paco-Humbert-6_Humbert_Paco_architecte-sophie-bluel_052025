@@ -47,29 +47,29 @@ async function displayCategories() {
   const categories = await getCategories();
 // unshift ajoute un filtre "Tous" avant les autres catégories dans l'interface, pour que l'utilisateur puisse voir tous les travaux sans filtrage.
   categories.unshift({ id: 0, name: "Tous" });
-  const filtersContainer = document.querySelector("#filters");
-// Vide les filtres pour éviter les doublons  
-  filtersContainer.innerHTML = ""; 
 
-  categories.forEach((cat) => {
-    const filterElement = document.createElement("bouton");
-    filterElement.classList.add(".filter-btn");
-    filterElement.innerText = cat.name;
-    filterElement.addEventListener("click", () => {
-      document
-        .querySelectorAll("filter-btn")
-        .forEach((item) => item.classList.remove("selected"));
-// Ajoute une classe à l'élément cliqué
-      filterElement.classList.add("selected");
-// Filtre les travaux en fonction de la catégorie sélectionnée
-      filterWorks(cat.id);
+  const filterButtons = document.querySelectorAll(".filter-btn");
+
+ filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+// Gestion de la classe "selected"
+      filterButtons.forEach(btn => btn.classList.remove("selected"));
+      button.classList.add("selected");
+
+// Récupération du nom de la catégorie à filtrer
+      const selectedCategory = button.textContent.trim().toLowerCase();
+
+// Récupère l'objet catégorie correspondant
+      const matchedCategory = categories.find(cat => cat.name.toLowerCase() === selectedCategory);
+
+// Filtrage
+      if (matchedCategory) {
+        filterWorks(matchedCategory.id);
+      } else {
+        displayFilteredWorks(allWorks);
+      }
     });
-      filtersContainer.appendChild(filterElement);
   });
-
-// Sélectionne par défaut le premier élément 'Tous'
-  filtersContainer.firstChild.classList.add("selected");
-}
 
 // Fonction pour filtrer les travaux par catégorie.
 async function filterWorks(categoryId) {
