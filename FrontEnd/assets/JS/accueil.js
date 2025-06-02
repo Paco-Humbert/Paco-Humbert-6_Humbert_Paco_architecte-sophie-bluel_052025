@@ -50,3 +50,24 @@ function displayWorks(works) {
   });
 }
 
+// Génération filtres dynamique
+function filterWorks(works) {
+// Vide HTML pour éviter les doublons
+  filtersContainer.innerHTML ="";
+// Création Map pour stockage catégories 
+  const categoriesMap = new Map();
+// Ajout manuel catégorie "Tous" avec ID 0
+  categoriesMap.set(0, "Tous");
+ // Parcours tous les projets 
+  works.forEach(work => {
+// Si la catégorie n'est pas enregistrée dans Map, ajout    
+    if(!categoriesMap.has(work.categories.id)) {
+      categoriesMap.set(work.category.id, work.category.name);
+    }
+  });
+
+
+
+  
+}
+    
