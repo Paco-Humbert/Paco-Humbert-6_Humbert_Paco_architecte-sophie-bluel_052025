@@ -19,7 +19,7 @@ async function getWorks() {
 // Affichage des Projets
     displayWorks (works);
 // génèration des filtres à partir des catégéories présentes 
-    generateFiltersFromWorks(works);
+    generateFilters(works);
   } catch (error) {
 // En cas d'erreur affichage message d'erreur
   console.error("Error Loading works.", error)    
@@ -51,7 +51,7 @@ function displayWorks(works) {
 }
 
 // Génération filtres dynamique
-function filterWorks(works) {
+function generateFilters(works) {
 // Vide HTML pour éviter les doublons
   filtersContainer.innerHTML ="";
 // Création Map pour stockage catégories 
@@ -61,13 +61,50 @@ function filterWorks(works) {
  // Parcours tous les projets 
   works.forEach(work => {
 // Si la catégorie n'est pas enregistrée dans Map, ajout    
-    if(!categoriesMap.has(work.categories.id)) {
+    if(!categoriesMap.has(work.category.id)) {
       categoriesMap.set(work.category.id, work.category.name);
     }
   });
 
 
+// Créer un bouton pour chaque catégorie
+  categoriesMap.forEach((name, id) => {
+    const button = document.createElement("button");
+// Ajout class
+    button.classList.add("filter-btn");
+// Nom de la catégorie part bouton
+    button.textContent = name;
 
-  
+    button.addEventListener("click", () => {
+// Retire la classe "selected" de tous les boutons
+      document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("selected"));
+
+// "selected" uniquement sur le bouton cliqué
+      button.classList.add("selected");
+
+// Filtre les projets selon l’ID de la catégorie
+      filterWorks(id);
+    });
+
+// Ajoute le bouton au conteneur
+    filtersContainer.appendChild(button);
+  });
+
+// Par défaut sélectionne le premier bouton ("Tous")
+  const firstButton = filtersContainer.querySelector(".filter-btn");
+  if (firstButton) firstButton.classList.add("selected");
 }
-    
+
+// Filtrer les projets selon une catégorie
+function filterWorks(categoryId) {
+// Si clique sur "Tous", affiche tous les projets
+  if (categoryId === 0) {
+    displayWorks(allWorks);
+  } else {
+// Sinon, filtre les projets par catégorie
+    const filtered = allWorks.filter(work => work.category.id === categoryId);
+    displayWorks(filtered);
+  }
+}
+
+  getWorks(); 
