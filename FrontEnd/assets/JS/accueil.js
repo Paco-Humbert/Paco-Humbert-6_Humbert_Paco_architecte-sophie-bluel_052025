@@ -1,5 +1,9 @@
 // HTML gallery
-const gallery = document.querySelector(".gallery");                   
+const gallery = document.querySelector(".gallery");    
+
+// Stock les travaux une seule fois
+let allWorks = [];
+
 // Fonction asynchrone pour récupérer les travaux depuis l'API.
 async function getWorks() { 
 // Utiliser pour sécuriser si Fetch ne fonctionne pas    
@@ -36,21 +40,6 @@ function displayWorks(works) {
     figure.appendChild(caption);
     gallery.appendChild(figure);
   });
-}
-
-// Lance la récupération dès le chargement de la page
-getWorks();        
-
-// Fonction asynchrone pour récupérer les catégorie depuis l'API.
-async function getCategories() {
-  try {
-      const response = await fetch("http://localhost:5678/api/categories");
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    const categories = await response.json();
-    return categories;
-  } catch (error) {
-    console.error("Error loading categories.", error);
-  }
 }
 
 // Fonction pour afficher les catégories
@@ -121,3 +110,5 @@ async function displayFilteredWorks(filteredWorks = null) {
   }
 }
 
+// Lance la récupération dès le chargement de la page
+getWorks();  
