@@ -25,3 +25,28 @@ async function getWorks() {
   console.error("Error Loading works.", error)    
   }
 }
+
+// Fonction pour affichage des projets dans la galerie
+function displayWorks(works) {
+// Vide d'abord la galerie pour éviter les doublons
+  gallery.innerHTML = "";
+// Pour chaque projet (work), création d'un bloc <figure>
+  works.forEach(work => {
+    const figure = document.createElement("figure");
+// Création image du projet
+    const img = document.createElement("img");
+// URL de l’image
+    img.src = work.imageUrl; 
+// Génération "alt"
+    img.alt = work.title;    
+// Création de la légende 
+    const caption = document.createElement("figcaption");
+    caption.textContent = work.title;
+// Ajout <img> et <caption>
+    figure.appendChild(img);
+    figure.appendChild(caption);
+// Ajout <figure> complet
+    gallery.appendChild(figure);
+  });
+}
+
