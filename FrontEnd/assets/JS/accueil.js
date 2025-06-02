@@ -71,31 +71,15 @@ async function displayCategories() {
     });
   });
 
-// Fonction pour filtrer les travaux par catégorie.
-async function filterWorks(categoryId) {
-  const works = await getWorks();
-// Si l'ID de la catégorie est 0, affiche tous les travaux.
-  if (categoryId === 0) {
-    displayFilteredWorks(works);
-    return;
-  }
-// Filtre les travaux selon la catégorie sélectionnée.
-  const filteredWorks = works.filter(
-    (travail) => travail.category.id === categoryId
+// Sélectionne "Tous" par défaut au chargement
+  const defaultButton = Array.from(filterButtons).find(btn =>
+    btn.textContent.trim().toLowerCase() === "tous"
   );
-  displayFilteredWorks(filteredWorks);
+  if (defaultButton) {
+    defaultButton.classList.add("selected");
+  }
 }
 
-// Affiche les travaux filtrés dans la galerie
-async function displayFilteredWorks(filteredWorks = null) {
-  const galleryElement = document.querySelector(".gallery");
-// Vide la galerie avant d'ajouter les nouveaux éléments pour éviter les doublons
-  galleryElement.innerHTML = "";
-
-// Si aucun travail filtré, récupère tous les travaux
-  if (filteredWorks == null) {
-    filteredWorks = await getWorks();
-  }
 
 // Crée et ajoute chaque élément de travail à la galerie
   for (let travail of filteredWorks) {
