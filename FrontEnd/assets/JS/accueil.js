@@ -101,7 +101,7 @@ function filterWorks(categoryId) {
   if (categoryId === 0) {
     displayWorks(allWorks);
   } else {
-    // Sinon, filtre les projets par catégorie
+  // Sinon, filtre les projets par catégorie
     const filtered = allWorks.filter(work => work.category.id === categoryId);
     displayWorks(filtered);
   }
