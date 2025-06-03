@@ -310,5 +310,15 @@ a {
 	height: 1024px;
 }
 
+#header-edition,
+#portfolio-modification {
+  display: none;
+}
 
+.error-message {
+  font-weight: bold;
+  font-size: 14px;
+  color: red;
+  margin-top: 1em;
+}
 
