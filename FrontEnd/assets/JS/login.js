@@ -33,6 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     body: JSON.stringify({ email, password }), 
                 });
 
-        }
+                // Si la réponse est OK (statut HTTP 200), connexion réussie
+                if (response.ok) {
+                     
+                } else {
+                // Si les identifiants sont incorrects, affiche une erreur globale
+                }
+            } catch (error) {
+              // En cas d'erreur réseau ou serveur, affiche un message générique  
+            }
+        });
     }
 }
+
+
