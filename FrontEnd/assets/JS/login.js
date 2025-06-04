@@ -83,6 +83,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const headerEdition = document.querySelector("#header-edition");
     // Sélectionne le bouton "modifier" dans la section portfolio
     const portfolioMod = document.querySelector("#portfolio-modification");
+    
+    // Vérification si token présent (user connected)
+    if (token) {
+        // Si lien login présent dans le DOM
+        if (logOut) {
+            // remplace "login" part "logout"
+            logOut.textContent = "logout";
+
+            logOut.addEventListener("click", (e) => {
+                // Empêche le comportement par défaut 
+                e.preventDefault(); 
+
+                // Supprime le token 
+                localStorage.removeItem("token");
+
+                // Recharge la page pour appliquer les changements (retour à l’état déconnecté)
+                window.location.reload();
+        });
+    }
+
+
 });
 
 
