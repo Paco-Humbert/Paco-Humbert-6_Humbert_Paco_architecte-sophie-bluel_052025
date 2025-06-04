@@ -102,11 +102,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     window.location.reload();
                 });
             }
+            // Si la bannière est présente dans le DOM
             if (headerEdition){
-
+                // Rétablit son affichage en "flex"
+                headerEdition.style.display = "flex";
             }
+            // Si le bouton "modifier" est présent dans le DOM
             if (portfolioMod){
-
+                // Rétablit son affichage en "flex"
+                portfolioMod.style.display = "flex";
             }
         }
 });
