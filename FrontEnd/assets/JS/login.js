@@ -112,6 +112,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Rétablit son affichage en "flex"
                 portfolioMod.style.display = "flex";
             }
+
+            // Si les filtres sont dans le DOM
+            if (filtersContainer) {
+                // Masque les filtres
+                filtersContainer.style.display = "none";
+            }
+            
         }
 });
 
