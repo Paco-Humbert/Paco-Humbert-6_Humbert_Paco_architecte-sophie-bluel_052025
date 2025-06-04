@@ -52,6 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-}
+
+    // Fonction qui supprime tous les messages d’erreur déjà affichés
+    function clearErrors() {
+        document.querySelectorAll(".error-message").forEach((el) => el.remove());
+    }
+
+     // Fonction qui crée et affiche un message d’erreur juste au-dessus du bouton "Se connecter"
+    function showGlobalError(message) {
+        
+    }
+
+});
 
 
