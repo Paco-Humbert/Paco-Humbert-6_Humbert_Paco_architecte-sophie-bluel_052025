@@ -35,12 +35,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Si la réponse est OK (statut HTTP 200), connexion réussie
                 if (response.ok) {
+                    // Transforme la réponse en JSON
+                    const data = await response.json(); 
+                    // Stock le token dans le localStorage
+                    localStorage.setItem("token", data.token); 
+                    // Redirige vers la page d’accueil
+                    window.location.href = "index.html"; 
                      
                 } else {
                 // Si les identifiants sont incorrects, affiche une erreur globale
+                showGlobalError("Email ou mot de passe incorrect.");
                 }
             } catch (error) {
-              // En cas d'erreur réseau ou serveur, affiche un message générique  
+              // En cas d'erreur réseau ou serveur, affiche un message générique
+              showGlobalError("Erreur réseau ou serveur.");  
             }
         });
     }
