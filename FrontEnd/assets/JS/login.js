@@ -71,8 +71,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // Insère l’erreur juste avant le bouton
         submitBtn.parentNode.insertBefore(error, submitBtn); 
     }
-
-    
 });
+
+// Attend que le DOM soit complètement chargé avant d'exécuter le code
+document.addEventListener("DOMContentLoaded", () => {
+    // Récupère le token depuis localStorage
+    const token = localStorage.getItem("token");
+    // Sélectionne le lien dans l'élément ayant la classe "Login"
+    const logOut = document.querySelector(".login a");
+    // Sélectionne la bannière édition
+    const headerEdition = document.querySelector("#header-edition");
+    // Sélectionne le bouton "modifier" dans la section portfolio
+    const portfolioMod = document.querySelector("#portfolio-modification");
+});
+
 
 
