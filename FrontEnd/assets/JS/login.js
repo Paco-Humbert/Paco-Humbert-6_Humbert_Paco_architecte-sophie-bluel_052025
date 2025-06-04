@@ -92,9 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 logOut.textContent = "logout";
 
                 logOut.addEventListener("click", (e) => {
-                    // Empêche le comportement par défaut 
-                    e.preventDefault(); 
-
+                
                     // Supprime le token 
                     localStorage.removeItem("token");
 
