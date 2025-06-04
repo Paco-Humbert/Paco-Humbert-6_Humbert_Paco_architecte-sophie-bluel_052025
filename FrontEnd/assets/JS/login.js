@@ -60,9 +60,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
      // Fonction qui crée et affiche un message d’erreur juste au-dessus du bouton "Se connecter"
     function showGlobalError(message) {
-        
+        // Cible le bouton
+        const submitBtn = document.querySelector('input[type="submit"]'); 
+        // Crée un nouvel élément <p>
+        const error = document.createElement("p");
+        // Applique la classe CSS
+        error.classList.add("error-message"); 
+        // Insère le texte du message
+        error.textContent = message; 
+        // Insère l’erreur juste avant le bouton
+        submitBtn.parentNode.insertBefore(error, submitBtn); 
     }
 
+    
 });
 
 
