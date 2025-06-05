@@ -312,7 +312,7 @@ a {
     margin: auto;
 }
 
-.login {
+.login:hover, .login:active, .login:focus{
 	font-weight: bold;
 }
 

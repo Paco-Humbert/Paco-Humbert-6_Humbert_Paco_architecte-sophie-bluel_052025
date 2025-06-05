@@ -1,3 +1,5 @@
+// GESTION FORMULAIRE DE CONNEXION
+
 // Attend que le DOM soit entièrement chargé avant d'exécuter le code
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -53,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    //AFFICHAGE MESSAGE D'ERREUR
+
     // Fonction qui supprime tous les messages d’erreur déjà affichés
     function clearErrors() {
         document.querySelectorAll(".error-message").forEach((el) => el.remove());
@@ -73,6 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+//GESTION DE L'ETAT CONNECTE AU CHARGEMENT
+
 // Attend que le DOM soit complètement chargé avant d'exécuter le code
 document.addEventListener("DOMContentLoaded", () => {
     // Récupère le token depuis localStorage
@@ -88,6 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (token) {
             // Si lien login présent dans le DOM
             if (logOut) {
+
+                //DECONNEXION UTILISATEUR
+
                 // remplace "login" part "logout"
                 logOut.textContent = "logout";
 
