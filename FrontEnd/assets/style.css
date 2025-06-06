@@ -289,6 +289,7 @@ a {
 	gap: 10px;
 	cursor: pointer;
 	margin-top: 85px;
+	margin-bottom: 5px;
 }
 
 
@@ -364,6 +365,7 @@ a {
     text-align: center;
     padding-top: 40px;
     padding-bottom: 36px;
+	margin-left: 340px;
 }
 
 
@@ -488,3 +490,6 @@ a {
 	margin: 0;
 }
 
+.fa-pen-to-square {
+	font-size: 15.58px;
+}
