@@ -334,3 +334,157 @@ a {
 	margin: 10px 0 10px 0;
 }
 
+.modal {
+	position: fixed;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.3);
+	z-index: 10;
+}
+
+.modal-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	overflow: auto;
+	width: 630px;
+	height: 688px;
+	padding: 20px;
+	background-color: #fff;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	font-size: 26px;
+    font-weight: 400;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 36px;
+}
+
+
+
+.js-modal-close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+	color: #333;
+	cursor: pointer;
+}
+
+.js-modal-back {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+	color: #333;
+	cursor: pointer;
+}
+
+.modal-content {
+	display: grid;
+	justify-content: center;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 6px;
+	grid-row-gap: 25px;
+	width: 419px;
+	margin-bottom: 30px;
+}
+
+.border {
+	border: 1px solid #b3b3b3;
+	width: 420px;
+	margin: 38px 0;
+}
+
+#addPhotoButton {
+	font-family: "Syne";
+	font-size: 14px;
+	font-weight: 700;
+	background-color: #1d6154;
+	color: white;
+	border-radius: 60px;
+	width: 237px;
+	height: 36px;
+	margin-bottom: 25px;
+	cursor: pointer;
+}
+
+#addWorkButton {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: "Syne";
+	font-size: 14px;
+	font-weight: 700;
+	background-color: #a7a7a7;
+	color: white;
+	border-radius: 60px;
+	width: 237px;
+	height: 36px;
+	margin-bottom: 25px;
+	cursor: pointer;
+	border: none;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+#addWorkButton:hover {
+	background-color: white !important;
+	color: #1d6154 !important;
+	border: 1px solid #1d6154 !important;
+	}
+
+#formAddWork {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+#formAddWork input[type="text"],
+#formAddWork select {
+  	padding: 18px;
+}
+
+.modalAddPhoto {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 7px;
+	background-color: #e8f1f6;
+	padding: 19px;
+	border-radius: 3px;
+	margin-bottom: 9px;
+}
+
+.labelFile {
+	color: #306685;
+	background-color: #cbd6dc;
+	padding: 10px 33px;
+	border-radius: 50px;
+}
+
+.fa-xmark {
+	font-size: 24px;
+	margin: 16px 20px 0 0;
+}
+
+.fa-arrow-left {
+	font-size: 24px;
+	margin: 16px 0px 0 20px;
+}
+
+.fa-image {
+	font-size: 76px;
+	color: #cbd6dc;
+	margin: 0;
+}
+
