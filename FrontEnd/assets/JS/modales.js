@@ -51,17 +51,20 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.key === "Tab" && modal !== null) { 
           // Premier élément focusable
           const firstEl = focusablesArray[0]; 
-          // Dernier élément focusabl
-          const lastEl = focusablesArray[focusablesArray.length - 1]; e
+          // Dernier élément focusable
+          const lastEl = focusablesArray[focusablesArray.length - 1]; 
 
-          if (e.shiftKey) { // Shift + Tab = navigation arrière
+          // Shift + Tab = navigation arrière
+          if (e.shiftKey) { 
             if (document.activeElement === firstEl) {
               // Empêche le comportement normal
               e.preventDefault(); 
               // Revenir à la fin
               lastEl.focus(); 
             }
-          } else { // Tab = navigation avant
+
+          // Tab = navigation avant
+          } else { 
             if (document.activeElement === lastEl) {
               // Empêche le comportement normal
               e.preventDefault(); 
@@ -86,6 +89,7 @@ function closeModal() {
   if (modal) {
     // Si un élément à l'intérieur de la modale a le focus, on lui retire
     if (document.activeElement && modal.contains(document.activeElement)) {
+      // Fais perdre le focus à l’élément actuellement actif (sélectionné) sur la page
       document.activeElement.blur();
     }
     modal.style.display = "none"; 
