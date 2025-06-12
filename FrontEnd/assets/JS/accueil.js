@@ -11,14 +11,14 @@ async function getWorks() {
     // Appel API    
     const response = await fetch ("http://localhost:5678/api/works");
     // Vérification réponse valide, sinon affichage message d'erreur   
-    if (!response.ok) throw new Error ('`HTTP error! status: ${response.status}');
+    if (!response.ok) throw new Error (`HTTP error! status: ${response.status}`);
     // Transforme la réponse JSON en tableau
     const works = await response.json();
     // Stockage projets dans variable globale
     allWorks = works;
     // Affichage des Projets
     displayWorks (works);
-    // génèration des filtres à partir des catégéories présentes 
+    // génération des filtres à partir des catégéories présentes 
     generateFilters(works);
   } catch (error) {
     // En cas d'erreur affichage message d'erreur

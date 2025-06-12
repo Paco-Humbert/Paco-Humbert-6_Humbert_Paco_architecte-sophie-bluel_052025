@@ -76,7 +76,69 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // Récupère la modale d'ajout de travaux
+  const modalAddWork = document.getElementById("modalAddWork");
+
+  // Récupère le bouton "Ajouter une photo"
+  const addPhotoButton = document.getElementById("addPhotoButton");
+
+  // Récupère le bouton retour "<-"
+  const backButton = document.querySelector(".js-modal-back");
+
+  // Quand on clique sur "Ajouter une photo" depuis la galerie
+  if (addPhotoButton && modalAddWork) {
+    addPhotoButton.addEventListener("click", () => {
+      // Ferme la modale galerie
+      modalGallery.style.display = "none";
+      modalGallery.setAttribute("aria-hidden", "true");
+      modalGallery.removeAttribute("aria-modal");
+
+      // Ouvre la modale d’ajout
+      modal = modalAddWork;
+      modalAddWork.style.display = "flex";
+      modalAddWork.setAttribute("aria-hidden", "false");
+      modalAddWork.setAttribute("aria-modal", "true");
+    });
+  }
+
+  // Quand on clique sur "<-" pour revenir à la galerie
+  if (backButton && modalGallery) {
+    backButton.addEventListener("click", () => {
+      // Ferme la modale d’ajout
+      modalAddWork.style.display = "none";
+      modalAddWork.setAttribute("aria-hidden", "true");
+      modalAddWork.removeAttribute("aria-modal");
+
+      // Rouvre la modale galerie
+      modal = modalGallery;
+      modalGallery.style.display = "flex";
+      modalGallery.setAttribute("aria-hidden", "false");
+      modalGallery.setAttribute("aria-modal", "true");
+    });
+  }
 });
+
+// Fonction qui empêche la propagation de l'événement de clic
+function stopPropagation(event) {
+  // Empêche le clic à l'intérieur de la modale de remonter et déclencher closeModal
+  event.stopPropagation(); 
+}
+
+// Fonction qui ferme la modale si elle est ouverte
+function closeModal() {
+  if (modal) {
+    // Si un élément à l'intérieur de la modale a le focus, on lui retire
+    if (document.activeElement && modal.contains(document.activeElement)) {
+      // Fais perdre le focus à l’élément actuellement actif (sélectionné) sur la page
+      document.activeElement.blur();
+    }
+    modal.style.display = "none"; 
+    modal.setAttribute("aria-hidden", "true");
+    modal.removeAttribute("aria-modal"); 
+    modal = null; 
+  }
+}
 
 // Fonction qui empêche la propagation de l'événement de clic
 function stopPropagation(event) {
