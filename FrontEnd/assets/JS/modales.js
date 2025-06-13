@@ -99,6 +99,20 @@ document.addEventListener("DOMContentLoaded", () => {
       modalAddWork.style.display = "flex";
       modalAddWork.setAttribute("aria-hidden", "false");
       modalAddWork.setAttribute("aria-modal", "true");
+
+      const closeButton = modalAddWork.querySelector(".js-modal-close");
+      if (closeButton) {
+        closeButton.addEventListener("click", closeModal);
+      }
+
+      // Ferme la modale ajout en cliquant sur l'overlay
+      modalAddWork.addEventListener("click", closeModal);
+
+      // Empêche la fermeture si on clique dans la boîte modale
+      const modalWrapper = modalAddWork.querySelector(".modal-wrapper");
+      if (modalWrapper) {
+      modalWrapper.addEventListener("click", stopPropagation);
+      }
     });
   }
 
@@ -140,23 +154,3 @@ function closeModal() {
   }
 }
 
-// Fonction qui empêche la propagation de l'événement de clic
-function stopPropagation(event) {
-  // Empêche le clic à l'intérieur de la modale de remonter et déclencher closeModal
-  event.stopPropagation(); 
-}
-
-// Fonction qui ferme la modale si elle est ouverte
-function closeModal() {
-  if (modal) {
-    // Si un élément à l'intérieur de la modale a le focus, on lui retire
-    if (document.activeElement && modal.contains(document.activeElement)) {
-      // Fais perdre le focus à l’élément actuellement actif (sélectionné) sur la page
-      document.activeElement.blur();
-    }
-    modal.style.display = "none"; 
-    modal.setAttribute("aria-hidden", "true");
-    modal.removeAttribute("aria-modal"); 
-    modal = null; 
-  }
-}
