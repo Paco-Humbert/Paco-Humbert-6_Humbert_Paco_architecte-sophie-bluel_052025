@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       modal = modalGallery;
       // Affiche la modale avec flexbox
       modal.style.display = "flex";
+      displayWorksInModal(allWorks);
       // Accessibilité : la modale est maintenant visible
       modal.setAttribute("aria-hidden", "false");
       // Accessibilité : indique que c'est une modale
@@ -154,3 +155,11 @@ function closeModal() {
   }
 }
 
+// Sélection du conteneur de la galerie dans le modale
+
+const modaleGalleryContent = document.querySelector ("#modalGallery .modal-content");
+
+// Fonction pour afficher les travau x dans la modale
+function displayWorksInModal(works) {
+  
+}
