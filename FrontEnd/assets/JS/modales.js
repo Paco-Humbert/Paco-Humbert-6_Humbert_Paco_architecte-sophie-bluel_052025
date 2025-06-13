@@ -159,7 +159,24 @@ function closeModal() {
 
 const modaleGalleryContent = document.querySelector ("#modalGallery .modal-content");
 
-// Fonction pour afficher les travau x dans la modale
+// Fonction pour afficher les travaux dans la modale
 function displayWorksInModal(works) {
-  
+  // Vide avant d'afficher pour éviter les doublons
+  modaleGalleryContent.innerHTML = "";
+
+    // Parcours chaque travail reçu en paramètre
+    works.array.forEach(works => {
+
+      // Créer un élément <figure>
+      const figure = document.createElement("figure");
+
+      // ajoute l'attribut "data-id" pour identifier chaque travail
+      figure.setAttribute("data-id", work.id);
+
+      // Crée l'élément image
+      const img = document.createElement("img");
+      // URL de l'image
+      img.src = work.imageURL;
+      img.alt = work.title;
+    });
 }
