@@ -244,4 +244,16 @@ formAddWork.addEventListener("submit", async (e) => {
   const title = document.getElementById("title").value;
   const categoryId = document.getElementById("categoryInput").value;
   const imageFile = document.getElementById("file").files[0];
+
+  // Récupération token
+  const token = localStorag.getItem("token");
+
+  // Vérification remplissage de tous les champs
+  if (!title || !categoryId || !imageFile) {
+    alert("veuillez remplir tous les champs et sélectonner une image.");
+    // Stop l'éxecution si un champ est vide
+    return;
+  }
+
+  
 })
