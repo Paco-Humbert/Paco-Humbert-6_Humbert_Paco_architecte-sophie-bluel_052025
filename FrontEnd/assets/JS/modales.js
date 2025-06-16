@@ -1,5 +1,7 @@
-// Variable globale pour stocker la modale, quelle est la boite modale qui est ouverte
+// Variable globale pour stocker la modale ouverte //
 let modal = null;
+
+// Gestion de l'ouverture de la modale galerie //
 
 // Quand le DOM est entièrement chargé
 document.addEventListener("DOMContentLoaded", () => {
@@ -78,6 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Gestion de l'ouverture de la modale ajout //
+
   // Récupère la modale d'ajout de travaux
   const modalAddWork = document.getElementById("modalAddWork");
 
@@ -154,6 +158,8 @@ function closeModal() {
     modal = null; 
   }
 }
+
+// Affichage des travaux dans la modale galerie //
 
 // Sélection du conteneur de la galerie dans le modale
 
@@ -233,6 +239,8 @@ function displayWorksInModal(works) {
     });
 }
 
+// Gestion de la soumission du formulaire d'ajout de travail //
+
 // Gestion de la soumission du formulaire d'ajout de photo : //
 
 // Sélection formulaire dans la modale
@@ -240,7 +248,7 @@ const formAddWork = document.getElementById("formAddWork");
 
 // Ecouteur
 formAddWork.addEventListener("submit", async (e) => {
-  e.preventDefault
+  e.preventDefault();
 
   // Récupération valeur saisies dans les champs
   const title = document.getElementById("title").value;
@@ -248,7 +256,7 @@ formAddWork.addEventListener("submit", async (e) => {
   const imageFile = document.getElementById("file").files[0];
 
   // Récupération token
-  const token = localStorag.getItem("token");
+  const token = localStorage.getItem("token");
 
   // Vérification remplissage de tous les champs
   if (!title || !categoryId || !imageFile) {
@@ -256,6 +264,11 @@ formAddWork.addEventListener("submit", async (e) => {
     // Stop l'éxecution si un champ est vide
     return;
   }
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("category", categoryId);
+  formData.append("image", imageFile);
 
   try {
     // Envoie une requête POST avec les données su formulaire
@@ -283,7 +296,7 @@ formAddWork.addEventListener("submit", async (e) => {
       alert("Erreur lors de l'envoi. Code : " + response.status);
     }
   } catch (error) {
-    alert("Erreur réseau : + error.message")
+    alert("Erreur réseau : " + error.message)
   }
 })
 
@@ -314,7 +327,31 @@ async function popularCategory() {
   }
 }
 
-// Appelle automatiquement la fonction quand le DOM est prêt
+// Affichage de la miniature de la photo sélectionnée //
+
+// Appel automatiquement la fonction quand le DOM est prêt
 document.addEventListener("DOMContentLoaded", popularCategory);
+
+// Aperçu de l'image sélectionnée dans la modale d'ajout
+
+const fileInput = document.getElementById("file"); 
+const previewImage = document.getElementById("previewImage"); 
+
+fileInput.addEventListener("change", () => {
+  // Récupère le fichier sélectionné
+  const file = fileInput.files[0];  
+  if (file) {
+    // Crée un lecteur de fichier
+    const reader = new FileReader(); 
+
+    reader.onload = function (e) {
+      // Définit la source de l'image
+      previewImage.src = e.target.result; 
+      previewImage.style.display = "block"; 
+    };
+    // Convertit le fichier en URL base64
+    reader.readAsDataURL(file); 
+  }
+});
 
 
