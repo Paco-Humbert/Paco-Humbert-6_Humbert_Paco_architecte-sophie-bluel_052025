@@ -222,6 +222,8 @@ function displayWorksInModal(works) {
             // Affichage Gallery mise à jour
             displayWorksInModal(allWorks);
             displayWorks(allWorks); 
+
+            closeModal();
           } else {
             console.error("Erreur lors de la suppression", response.status);
           }
