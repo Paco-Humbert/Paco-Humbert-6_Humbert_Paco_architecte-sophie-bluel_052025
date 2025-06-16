@@ -157,26 +157,27 @@ function closeModal() {
 
 // Sélection du conteneur de la galerie dans le modale
 
-const modaleGalleryContent = document.querySelector ("#modalGallery .modal-content");
+const modalGalleryContent = document.querySelector ("#modalGallery .modal-content");
 
 // Fonction pour afficher les travaux dans la modale
 function displayWorksInModal(works) {
   // Vide avant d'afficher pour éviter les doublons
-  modaleGalleryContent.innerHTML = "";
+  modalGalleryContent.innerHTML = "";
 
     // Parcours chaque travail reçu en paramètre
-    works.array.forEach(works => {
+    works.forEach(work => {
 
       // Créer un élément <figure>
       const figure = document.createElement("figure");
 
       // ajoute l'attribut "data-id" pour identifier chaque travail
       figure.setAttribute("data-id", work.id);
-
+      // Affichage
+      figure.style.position = "relative";
       // Crée l'élément image
       const img = document.createElement("img");
       // URL de l'image
-      img.src = work.imageURL;
+      img.src = work.imageUrl;
       // Titre travaux
       img.alt = work.title;
 
@@ -187,8 +188,7 @@ function displayWorksInModal(works) {
       deleteBtn.classList.add("delete-btn");
       // Font Awesome
       deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-      // Affichage
-      figure.style.position = "relative";
+      
 
       // Ecouteur 
       deleteBtn.addEventListener("click", async () => {
@@ -201,9 +201,11 @@ function displayWorksInModal(works) {
             // méthode HTTP
             method: "DELETE",
             headers: {
-              "Autorization": `Bearer ${token}`
+              "Authorization": `Bearer ${token}`
             }
           });
+
+          console.log("Status réponse:", response.status);
 
           // Si suppression ok ( code 204)
           if (response.ok) {
@@ -229,3 +231,4 @@ function displayWorksInModal(works) {
     modalGalleryContent.appendChild(figure);
     });
 }
+

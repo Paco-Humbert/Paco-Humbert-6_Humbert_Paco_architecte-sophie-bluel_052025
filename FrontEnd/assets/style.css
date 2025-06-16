@@ -524,3 +524,37 @@ label {
   border-radius: 3px;
 }
 
+#modalGallery .modal-content figure {
+  position: relative;
+  margin: 0;
+}
+
+#modalGallery .modal-content img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+#modalGallery .modal-content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 4px 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.delete-btn i {
+  pointer-events: none;
+}
