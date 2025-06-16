@@ -204,8 +204,22 @@ function displayWorksInModal(works) {
               "Autorization": `Bearer ${token}`
             }
           });
+
+          // Si suppression ok ( code 204)
+          if (response.ok) {
+            // Supprime le travail de la modale (DOM)
+            figure.remove();
+            // Met à jour le tableau
+            allWorks = allWorks.filter(w => w.id !== work.id);
+            // Affichage Gallery mise à jour
+            displayWorksInModal(allWorks);
+          } else {
+            console.error("Erreur lors de la suppression", response.status);
+          }
+        } catch (error) {
+          console.error("Erreur lors de la requête DELETE :", error);
         }
-      })
+      });
 
 
 
