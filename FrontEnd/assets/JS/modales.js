@@ -187,10 +187,25 @@ function displayWorksInModal(works) {
       deleteBtn.classList.add("delete-btn");
       // Font Awesome
       deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-      // Display
+      // Affichage
       figure.style.position = "relative";
 
-      
+      // Ecouteur 
+      deleteBtn.addEventListener("click", async () => {
+        try {
+          // Récupération du token 
+          const token = localStorage.getItem("token");
+          // Requête delete à l'API pour supprimer le travail
+          // cible un ID précis
+          const response = await fetch(`http://localhost:5678/api/works/${work.id}`, {
+            // méthode HTTP
+            method: "DELETE",
+            headers: {
+              "Autorization": `Bearer ${token}`
+            }
+          });
+        }
+      })
 
 
 
