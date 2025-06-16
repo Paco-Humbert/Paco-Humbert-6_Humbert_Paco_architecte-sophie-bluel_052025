@@ -215,6 +215,7 @@ function displayWorksInModal(works) {
             allWorks = allWorks.filter(w => w.id !== work.id);
             // Affichage Gallery mise à jour
             displayWorksInModal(allWorks);
+            displayWorks(allWorks); 
           } else {
             console.error("Erreur lors de la suppression", response.status);
           }
@@ -232,3 +233,15 @@ function displayWorksInModal(works) {
     });
 }
 
+// Sélection formulaire dans la modale
+const formAddWork = document.getElementById("formAddWork");
+
+// Ecouteur
+formAddWork.addEventListener("submit", async (e) => {
+  e.preventDefault
+
+  // Récupération valeur saisies dans les champs
+  const title = document.getElementById("title").value;
+  const categoryId = document.getElementById("categoryInput").value;
+  const imageFile = document.getElementById("file").files[0];
+})
