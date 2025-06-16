@@ -233,6 +233,8 @@ function displayWorksInModal(works) {
     });
 }
 
+// Gestion de la soumission du formulaire d'ajout de photo : //
+
 // Sélection formulaire dans la modale
 const formAddWork = document.getElementById("formAddWork");
 
@@ -284,4 +286,35 @@ formAddWork.addEventListener("submit", async (e) => {
     alert("Erreur réseau : + error.message")
   }
 })
+
+
+// Chargement dynamique des catégories dans le <select> //
+
+// CHargement des catégories disponibles depuis l'API
+async function popularCategory() {
+  try {
+    const res = await fetch("http://localhost:5678/api/categories"); 
+    const categories = await res.json(); 
+    const select = document.getElementById("categoryInput");
+    // Vide le <select> actuel
+    select.innerHTML = ""; 
+
+    // Crée une <option> pour chaque catégorie reçue
+    categories.forEach((cat) => {
+      const option = document.createElement("option");
+      // L’ID servira dans l’envoi
+      option.value = cat.id;       
+      // Le nom visible
+      option.textContent = cat.name; 
+      // Ajout à la liste déroulante
+      select.appendChild(option);   
+    });
+  } catch (error) {
+    console.error("Erreur chargement des catégories :", error);
+  }
+}
+
+// Appelle automatiquement la fonction quand le DOM est prêt
+document.addEventListener("DOMContentLoaded", popularCategory);
+
 
