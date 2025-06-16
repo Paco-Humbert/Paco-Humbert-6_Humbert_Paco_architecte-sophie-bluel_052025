@@ -221,8 +221,11 @@ function displayWorksInModal(works) {
         }
       });
 
+      // Ajoute l’image et le bouton poubelle dans <figure>
+    figure.appendChild(img);
+    figure.appendChild(deleteBtn);
 
-
-    
+    // Ajoute <figure> dans la galerie modale
+    modalGalleryContent.appendChild(figure);
     });
 }
