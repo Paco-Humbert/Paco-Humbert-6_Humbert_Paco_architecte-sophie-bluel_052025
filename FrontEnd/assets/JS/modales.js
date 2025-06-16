@@ -267,6 +267,7 @@ formAddWork.addEventListener("submit", async (e) => {
     return;
   }
 
+  // Création de l'objet FormData pour l'envoi
   const formData = new FormData();
   formData.append("title", title);
   formData.append("category", categoryId);
@@ -290,9 +291,18 @@ formAddWork.addEventListener("submit", async (e) => {
       console.log("Projet ajouté", newWork);
       alert("Projet ajouté avec succès !");
 
+      // Met à jour la liste globale des travaux
+      allWorks.push(newWork);
+
+      // Réaffiche les galeries avec le nouveau travail
+      displayWorks(allWorks);
+      displayWorksInModal(allWorks);
+
       // réinitialise le formulaire et l'aperçu de l'image
       formAddWork.reset();
       document.getElementById("previewImage").style.display = "none";
+
+      closeModal();
     } else {
       // Affichage erreur
       alert("Erreur lors de l'envoi. Code : " + response.status);
@@ -350,6 +360,11 @@ fileInput.addEventListener("change", () => {
       // Définit la source de l'image
       previewImage.src = e.target.result; 
       previewImage.style.display = "block"; 
+
+      // Masque les éléments de base
+      document.querySelector(".modalAddPhoto i").style.display = "none";
+      document.querySelector(".labelFile").style.display = "none";
+      document.querySelector(".modalAddPhoto p").style.display = "none";
     };
     // Convertit le fichier en URL base64
     reader.readAsDataURL(file); 

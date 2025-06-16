@@ -143,8 +143,8 @@ li:hover {
 }
 
 .gallery img {
-	width: 100%;
-
+	width: 305px;
+    height: 407px;
 }
 #contact {
 	width: 50%;
@@ -269,17 +269,17 @@ a {
 }
 
 .filter-btn.active {
-  background-color: #1D6154;
-  color: white; 
+	background-color: #1D6154;
+	color: white; 
 }
 
 .portfolio-title {
-  display: flex;
-  justify-content: flex-start; 
-  align-items: center;
-  gap: 20px; 
-  padding-left: 370px;
-  margin-bottom: 3rem; 
+	display: flex;
+	justify-content: flex-start; 
+	align-items: center;
+	gap: 20px; 
+	padding-left: 370px;
+	margin-bottom: 3rem; 
 }
 
 #portfolio-modification {
@@ -369,11 +369,11 @@ a {
 }
 
 .modal-wrapper h3 {
-  font-size: 26px;
-  font-weight: 400;
-  text-align: center;
-  padding-top: 40px;
-  padding-bottom: 36px;
+  	font-size: 26px;
+  	font-weight: 400;
+  	text-align: center;
+  	padding-top: 40px;
+  	padding-bottom: 60px;
 }
 
 .js-modal-close {
@@ -464,9 +464,9 @@ a {
 
 #categoryInput,
 #title {
-  border: none;
-  background: #fff;
-  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+  	border: none;
+  	background: #fff;
+  	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
 }
 
 .modalAddPhoto {
@@ -480,6 +480,13 @@ a {
 	border-radius: 3px;
 	margin-bottom: 9px;
 	font-size: 10px;
+}
+
+.modalAddPhoto img {
+  	max-height: 100%;
+  	max-width: 100%;
+  	object-fit: cover;
+  	display: none;
 }
 
 .labelFile {
@@ -518,44 +525,43 @@ label {
 }
 
 #previewImage {
-  display: block;
-  max-width: 100%;
-  max-height: 169px;
-  object-fit: contain;
-  border-radius: 3px;
+  	display: block;
+ 	max-width: 100%;
+  	max-height: 169px;
+  	object-fit: contain;
+  	gap : 0
 }
 
 #modalGallery .modal-content figure {
-  position: relative;
-  margin: 0;
+  	position: relative;
+  	margin: 0;
 }
 
 #modalGallery .modal-content img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 3px;
+	width: 76.86px;
+	height: 102.57px;
+  	object-fit: cover;
+  	border-radius: 3px;
 }
 
 #modalGallery .modal-content {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
 }
 
 .delete-btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  padding: 4px 6px;
-  font-size: 12px;
-  cursor: pointer;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	padding: 4px 6px;
+	font-size: 12px;
+	cursor: pointer;
 }
 
 .delete-btn i {
-  pointer-events: none;
+  	pointer-events: none;
 }
