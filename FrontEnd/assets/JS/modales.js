@@ -177,6 +177,23 @@ function displayWorksInModal(works) {
       const img = document.createElement("img");
       // URL de l'image
       img.src = work.imageURL;
+      // Titre travaux
       img.alt = work.title;
+
+
+      // Création bouton "supprimer"
+      const deleteBtn = document.createElement("button");
+      // Ajout classe
+      deleteBtn.classList.add("delete-btn");
+      // Font Awesome
+      deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+      // Display
+      figure.style.position = "relative";
+
+      
+
+
+
+    
     });
 }
