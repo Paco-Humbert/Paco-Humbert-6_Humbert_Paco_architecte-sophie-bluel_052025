@@ -299,9 +299,7 @@ formAddWork.addEventListener("submit", async (e) => {
       displayWorksInModal(allWorks);
 
       // réinitialise le formulaire et l'aperçu de l'image
-      formAddWork.reset();
-      document.getElementById("previewImage").style.display = "none";
-
+      resetModalAddWork();
       closeModal();
     } else {
       // Affichage erreur
@@ -366,9 +364,25 @@ fileInput.addEventListener("change", () => {
       document.querySelector(".labelFile").style.display = "none";
       document.querySelector(".modalAddPhoto p").style.display = "none";
     };
-    // Convertit le fichier en URL base64
+    // Convertit le fichier en URL
     reader.readAsDataURL(file); 
   }
 });
+
+function resetModalAddWork() {
+  // Réinitialise le formulaire
+  formAddWork.reset();
+
+  // Réinitialise l'image preview
+  previewImage.src = "#";
+  previewImage.style.display = "none";
+
+  // Réaffiche les éléments de base de l'UI
+  document.querySelector(".modalAddPhoto i").style.display = "block";
+  document.querySelector(".labelFile").style.display = "block";
+  document.querySelector(".modalAddPhoto p").style.display = "block";
+}
+
+
 
 
