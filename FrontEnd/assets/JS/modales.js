@@ -255,5 +255,33 @@ formAddWork.addEventListener("submit", async (e) => {
     return;
   }
 
+  try {
+    // Envoie une requête POST avec les données su formulaire
+    const response = await fetch("http://localhost:5678/api/works", {
+      method: "POST",             
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      // Corps de la requête = données formulaire
+      body: formData,             
+    });
   
+    // Si ajout réussi
+    if (response.ok) {
+      // Récupération réponse 
+      const newWork = await response.json();
+      console.log("Projet ajouté", newWork);
+      alert("Projet ajouté avec succès !");
+
+      // réinitialise le formulaire et l'aperçu de l'image
+      formAddWork.reset();
+      document.getElementById("previewImage").style.display = "none";
+    } else {
+      // Affichage erreur
+      alert("Erreur lors de l'envoi. Code : " + response.status);
+    }
+  } catch (error) {
+    alert("Erreur réseau : + error.message")
+  }
 })
+
