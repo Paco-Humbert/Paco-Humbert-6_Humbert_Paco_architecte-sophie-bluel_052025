@@ -446,8 +446,8 @@ a {
 }
 
 #addWorkButton:hover {
-	background-color: white !important;
-	color: #1d6154 !important;
+	background-color: #1D6154 !important;
+	color: white !important;
 	border: 1px solid #1d6154 !important;
 	}
 
@@ -476,7 +476,6 @@ a {
 	justify-content: center;
 	gap: 7px;
 	background-color: #e8f1f6;
-	padding: 19px;
 	border-radius: 3px;
 	margin-bottom: 9px;
 	font-size: 10px;
@@ -517,7 +516,7 @@ label {
 .fa-image {
 	font-size: 76px;
 	color: #cbd6dc;
-	margin: 0;
+	padding-top: 19px;
 }
 
 .fa-pen-to-square {
@@ -564,4 +563,15 @@ label {
 
 .delete-btn i {
   	pointer-events: none;
+}
+
+.file-info {
+  padding-bottom: 19px;
+  
+}
+
+.filter-btn.selected {
+  background-color: #1D6154;
+  color: white;
+  border: none;
 }

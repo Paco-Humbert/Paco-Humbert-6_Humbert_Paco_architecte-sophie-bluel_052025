@@ -99,11 +99,36 @@ document.addEventListener("DOMContentLoaded", () => {
       modalGallery.setAttribute("aria-hidden", "true");
       modalGallery.removeAttribute("aria-modal");
 
+      resetModalAddWork();
+
       // Ouvre la modale d’ajout
       modal = modalAddWork;
       modalAddWork.style.display = "flex";
       modalAddWork.setAttribute("aria-hidden", "false");
       modalAddWork.setAttribute("aria-modal", "true");
+
+      const focusableSelectors = 'button, a, input, textarea, select';
+      const focusables = modalAddWork.querySelectorAll(focusableSelectors);
+      const focusablesArray = Array.from(focusables);
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Tab" && modal === modalAddWork) {
+          const firstEl = focusablesArray[0];
+          const lastEl = focusablesArray[focusablesArray.length - 1];
+
+          if (e.shiftKey) {
+            if (document.activeElement === firstEl) {
+              e.preventDefault();
+              lastEl.focus();
+            }
+          } else {
+            if (document.activeElement === lastEl) {
+              e.preventDefault();
+              firstEl.focus();
+            }
+          }
+        }
+      });
 
       const closeButton = modalAddWork.querySelector(".js-modal-close");
       if (closeButton) {
@@ -155,6 +180,10 @@ function closeModal() {
     modal.style.display = "none"; 
     modal.setAttribute("aria-hidden", "true");
     modal.removeAttribute("aria-modal"); 
+
+    if (modal.id === "modalAddWork") {
+      resetModalAddWork();
+    }
     modal = null; 
   }
 }
@@ -243,8 +272,6 @@ function displayWorksInModal(works) {
 
 // Gestion de la soumission du formulaire d'ajout de travail //
 
-// Gestion de la soumission du formulaire d'ajout de photo : //
-
 // Sélection formulaire dans la modale
 const formAddWork = document.getElementById("formAddWork");
 
@@ -262,7 +289,7 @@ formAddWork.addEventListener("submit", async (e) => {
 
   // Vérification remplissage de tous les champs
   if (!title || !categoryId || !imageFile) {
-    alert("veuillez remplir tous les champs et sélectonner une image.");
+    alert("veuillez remplir tous les champs et sélectionner une image.");
     // Stop l'éxecution si un champ est vide
     return;
   }
@@ -289,8 +316,7 @@ formAddWork.addEventListener("submit", async (e) => {
       // Récupération réponse 
       const newWork = await response.json();
       console.log("Projet ajouté", newWork);
-      alert("Projet ajouté avec succès !");
-
+      
       // Met à jour la liste globale des travaux
       allWorks.push(newWork);
 
@@ -313,7 +339,7 @@ formAddWork.addEventListener("submit", async (e) => {
 
 // Chargement dynamique des catégories dans le <select> //
 
-// CHargement des catégories disponibles depuis l'API
+// Chargement des catégories disponibles depuis l'API
 async function popularCategory() {
   try {
     const res = await fetch("http://localhost:5678/api/categories"); 

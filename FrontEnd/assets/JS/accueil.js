@@ -64,6 +64,10 @@ function generateFilters(works) {
     if(!categoriesMap.has(work.category.id)) {
       categoriesMap.set(work.category.id, work.category.name);
     }
+  const firstButton = filtersContainer.querySelector(".filter-btn");
+  if (firstButton) {
+    firstButton.classList.add("selected");
+  }
   });
 
 
@@ -85,14 +89,16 @@ function generateFilters(works) {
       // Filtre les projets selon l’ID de la catégorie
       filterWorks(id);
     });
-
+    
     // Ajoute le bouton au conteneur
     filtersContainer.appendChild(button);
   });
 
   // Par défaut sélectionne le premier bouton ("Tous")
   const firstButton = filtersContainer.querySelector(".filter-btn");
-  if (firstButton) firstButton.classList.add("selected");
+  if (firstButton) {
+     firstButton.classList.add("selected");
+  }
 }
 
 // Filtrer les projets selon une catégorie
