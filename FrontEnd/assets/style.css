@@ -445,11 +445,15 @@ a {
 	transition: background-color 0.3s, color 0.3s;
 }
 
-#addWorkButton:hover {
-	background-color: #1D6154 !important;
-	color: white !important;
-	border: 1px solid #1d6154 !important;
-	}
+#addWorkButton:disabled {
+  background-color: #A7A7A7;
+  cursor: not-allowed;
+}
+
+#addWorkButton:enabled {
+  background-color: #1D6154;
+  cursor: pointer;
+}
 
 #formAddWork {
 	display: flex;

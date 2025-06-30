@@ -275,6 +275,31 @@ function displayWorksInModal(works) {
 // Sélection formulaire dans la modale
 const formAddWork = document.getElementById("formAddWork");
 
+const titleInput = document.getElementById("title");
+const categoryInput = document.getElementById("categoryInput");
+const fileInput = document.getElementById("file");
+const submitButton = document.getElementById("addWorkButton");
+
+// Fonction qui vérifie si tous les champs sont remplis
+function checkFormValidity() {
+  const title = titleInput.value.trim();
+  const category = categoryInput.value;
+  const fileSelected = fileInput.files.length > 0;
+
+  if (title && category && fileSelected) {
+    submitButton.disabled = false;
+  } else {
+    submitButton.disabled = true;
+  }
+}
+
+submitButton.disabled = true;
+
+// Appelle cette fonction à chaque changement
+titleInput.addEventListener("input", checkFormValidity);
+categoryInput.addEventListener("change", checkFormValidity);
+fileInput.addEventListener("change", checkFormValidity);
+
 // Ecouteur
 formAddWork.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -301,7 +326,7 @@ formAddWork.addEventListener("submit", async (e) => {
   formData.append("image", imageFile);
 
   try {
-    // Envoie une requête POST avec les données su formulaire
+    // Envoie une requête POST avec les données du formulaire
     const response = await fetch("http://localhost:5678/api/works", {
       method: "POST",             
       headers: {
@@ -370,7 +395,6 @@ document.addEventListener("DOMContentLoaded", popularCategory);
 
 // Aperçu de l'image sélectionnée dans la modale d'ajout
 
-const fileInput = document.getElementById("file"); 
 const previewImage = document.getElementById("previewImage"); 
 
 fileInput.addEventListener("change", () => {
@@ -398,6 +422,7 @@ fileInput.addEventListener("change", () => {
 function resetModalAddWork() {
   // Réinitialise le formulaire
   formAddWork.reset();
+  submitButton.disabled = true;
 
   // Réinitialise l'image preview
   previewImage.src = "#";
