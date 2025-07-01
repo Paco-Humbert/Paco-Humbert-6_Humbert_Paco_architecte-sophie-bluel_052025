@@ -103,38 +103,6 @@ async function generateFilters() {
   }
 }
 
-
-
-  // Créer un bouton pour chaque catégorie
-  categoriesMap.forEach((name, id) => {
-    const button = document.createElement("button");
-    // Ajout class
-    button.classList.add("filter-btn");
-    // Nom de la catégorie part bouton
-    button.textContent = name;
-
-    button.addEventListener("click", () => {
-      // Retire la classe "selected" de tous les boutons
-      document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("selected"));
-
-      // "selected" uniquement sur le bouton cliqué
-      button.classList.add("selected");
-
-      // Filtre les projets selon l’ID de la catégorie
-      filterWorks(id);
-    });
-    
-    // Ajoute le bouton au conteneur
-    filtersContainer.appendChild(button);
-  });
-
-  // Par défaut sélectionne le premier bouton ("Tous")
-  const firstButton = filtersContainer.querySelector(".filter-btn");
-  if (firstButton) {
-     firstButton.classList.add("selected");
-  }
-
-
 // Filtrer les projets selon une catégorie
 function filterWorks(categoryId) {
   // Si clique sur "Tous", affiche tous les projets
