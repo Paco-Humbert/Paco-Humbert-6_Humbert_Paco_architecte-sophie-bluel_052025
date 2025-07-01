@@ -19,7 +19,7 @@ async function getWorks() {
     // Affichage des Projets
     displayWorks (works);
     // génération des filtres à partir des catégéories présentes 
-    generateFilters(works);
+    generateFilters();
   } catch (error) {
     // En cas d'erreur affichage message d'erreur
     console.error("Error Loading works.", error)    
@@ -50,25 +50,59 @@ function displayWorks(works) {
   });
 }
 
-// Génération filtres dynamique
-function generateFilters(works) {
-  // Vide HTML pour éviter les doublons
-  filtersContainer.innerHTML ="";
-  // Création Map pour stockage catégories 
-  const categoriesMap = new Map();
-  // Ajout manuel catégorie "Tous" avec ID 0
-  categoriesMap.set(0, "Tous");
-  // Parcours tous les projets 
-  works.forEach(work => {
-    // Si la catégorie n'est pas enregistrée dans Map, ajout    
-    if(!categoriesMap.has(work.category.id)) {
-      categoriesMap.set(work.category.id, work.category.name);
+// Ordre fixe des catégories
+const ordreCategories = ["Tous", "Objets", "Appartements", "Hotels & restaurants"];
+
+// Génération des filtres dynamiques dans un ordre personnalisé
+async function generateFilters() {
+  filtersContainer.innerHTML = "";
+
+  // Récupération des catégories via l'API
+  try {
+    const response = await fetch("http://localhost:5678/api/categories");
+    if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
+    const categories = await response.json();
+
+    // Ajoute manuellement la catégorie "Tous"
+    const fullCategories = [{ id: 0, name: "Tous" }, ...categories];
+
+    // Trie les catégories selon l’ordre défini
+    const categoriesTriees = ordreCategories.map(name =>
+      fullCategories.find(cat => cat.name === name)
+    ).filter(Boolean); 
+
+    // Création des boutons
+    categoriesTriees.forEach(category => {
+      const button = document.createElement("button");
+      button.classList.add("filter-btn");
+      button.textContent = category.name;
+
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("selected"));
+        button.classList.add("selected");
+
+        if (category.id === 0) {
+          displayWorks(allWorks); 
+        } else {
+          const filtered = allWorks.filter(work => work.category.id === category.id);
+          displayWorks(filtered);
+        }
+      });
+
+      filtersContainer.appendChild(button);
+    });
+
+    // Active par défaut le bouton "Tous"
+    const firstButton = filtersContainer.querySelector(".filter-btn");
+    if (firstButton) {
+      firstButton.classList.add("selected");
     }
-  const firstButton = filtersContainer.querySelector(".filter-btn");
-  if (firstButton) {
-    firstButton.classList.add("selected");
+
+  } catch (error) {
+    console.error("Erreur lors du chargement des catégories :", error);
   }
-  });
+}
+
 
 
   // Créer un bouton pour chaque catégorie
@@ -99,7 +133,7 @@ function generateFilters(works) {
   if (firstButton) {
      firstButton.classList.add("selected");
   }
-}
+
 
 // Filtrer les projets selon une catégorie
 function filterWorks(categoryId) {
